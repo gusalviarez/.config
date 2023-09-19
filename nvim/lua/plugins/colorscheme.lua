@@ -1,34 +1,11 @@
-local M = {
-	"folke/tokyonight.nvim",
-	lazy = false,
-	priority = 1000,
-	opts = function()
-		local colors = {
-				GitAdd = "#A1C281",
-				GitChange = "#74ADEA",
-				GitDelete = "#FE747A",
-				}
-		return {
-			style = "night",
-			-- hide_inactive_statusline = true,
-			on_highlights = function(hl, c)
-				hl.GitSignsAdd = {
-					fg = colors.GitAdd,
-				}
-				hl.GitSignsChange = {
-					fg = colors.GitChange,
-				}
-				hl.GitSignsDelete = {
-					fg = colors.GitDelete,
-				}
-			end,
-		}
-	end,
-	config = function(_, opts)
-		local tokyonight = require("tokyonight")
-		tokyonight.setup(opts)
-		tokyonight.load()
-	end,
-}
+ local M = {
+    "folke/tokyonight.nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      -- load the colorscheme here
+      vim.cmd([[colorscheme tokyonight]])
+    end,
+  }
 
 return M
